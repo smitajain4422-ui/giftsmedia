@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blox Gifts - Claim Reward</title>
     
-    <!-- Discord / Social Media Embed Meta Tags -->
     <meta property="og:site_name" content="BloxGifts">
     <meta property="og:title" content="BloxGifts - Earn Robux for completing easy quests!">
     <meta property="og:description" content="BloxGifts is a platform where you can complete quests to earn Robux. Safe, legitimate, and trusted by thousands of Roblox players.">
@@ -15,10 +14,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!--WARNING - THIS IS AN OLD JQUERY VERSION-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <!-- Lead Checker Script -->
     <script type="text/javascript">
         setInterval(checkLeads, 15000); 
         function checkLeads() {
@@ -40,31 +37,32 @@
     </script>
 </head>
 <body>
-    <!-- Background Snowfall Container -->
     <div id="rain-container"></div>
 
     <div class="site-wrapper">
         
-        <!-- PC Layout Wrapper: Keeps Top Card Narrow -->
         <div class="main-content-area">
-            <!-- Dynamic content loads here -->
             <div id="dynamic-content"></div>
 
-            <!-- Timer: Relative to pull down dynamically -->
-            <div class="timer-box">
-                <span class="warning-icon">⚠️</span> EVENT ENDS IN <br>
-                <span class="timer-text">01<small>d</small> 13<small>h</small> 09<small>m</small> <span id="seconds">42</span><small>s</small></span>
+            <div class="timer-row">
+                <div class="timer-box">
+                    <span class="warning-icon">⚠️</span> EVENT ENDS IN <br>
+                    <span class="timer-text">00<small>d</small> 07<small>h</small> 21<small>m</small> <span id="seconds">42</span><small>s</small></span>
+                </div>
+                
+                <div class="action-btns" id="step3-actions">
+                    <button class="circle-btn" id="btn-back-step">↩</button>
+                    <button class="circle-btn" id="btn-refresh-offers">↻</button>
+                </div>
             </div>
         </div>
 
-        <!-- FAQ Section (Wide on PC) -->
         <div class="info-card">
             <div class="card-title"><span style="color: #2563eb;">❓</span> Help</div>
             <div class="card-subtitle">Have questions or issues?</div>
             <div id="faq-list"></div>
         </div>
 
-        <!-- Live Chat Section (Wide on PC) -->
         <div class="info-card">
             <div class="chat-header">
                 <div class="card-title"><span style="color: #16a34a;">💬</span> Live Chat</div>
@@ -72,7 +70,6 @@
             </div>
             <div class="card-subtitle" style="margin-bottom: 10px;">Talk to other Players</div>
             
-            <!-- Chat Box: Locked scrolling -->
             <div class="chat-box" id="chat-box"></div>
             
             <div class="chat-input-area">
@@ -83,14 +80,8 @@
         </div>
     </div>
 </body>
-</html>
-
-
-
-
-
-
-<style>
+                                        </html>
+                                                                                             <style>
     :root {
         --bg-grad-top: #154c25;
         --bg-grad-bot: #2c8c44;
@@ -146,7 +137,7 @@
     .reward-box { background: var(--light-blue-bg); border-radius: 12px; padding: 20px; text-align: center; position: relative; transition: 0.2s; cursor: pointer; border: 2px solid transparent;}
     .reward-box.selected { border-color: transparent; }
     .reward-icon { width: 80px; margin-bottom: 10px; }
-    .reward-box h2 { font-size: 18px; font-weight: 800; }
+    .reward-box h2 { font-size: 18px; font-weight: 800; margin-bottom: 2px;}
     .reward-box p { font-size: 13px; color: var(--text-sub); }
     .verified-badge { position: absolute; width: 32px; height: 32px; right: -12px; top: -12px; display: none; z-index: 5; }
 
@@ -163,10 +154,15 @@
     .spinner { display: none; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Fixed Timer Box */
-    .timer-box { position: relative; margin-top: -30px; margin-left: 15px; margin-bottom: 25px; background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%); color: white; padding: 8px 15px; border-radius: 8px; font-weight: 800; font-size: 11px; z-index: 10; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 1px solid #f87171; line-height: 1.2; width: max-content; }
+    /* Timer Row & Action Buttons */
+    .timer-row { display: flex; justify-content: space-between; align-items: flex-end; position: relative; margin-top: -30px; margin-left: 15px; margin-right: 15px; margin-bottom: 25px; z-index: 10;}
+    .timer-box { background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%); color: white; padding: 8px 15px; border-radius: 8px; font-weight: 800; font-size: 11px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 1px solid #f87171; line-height: 1.2; width: max-content; }
     .timer-text { font-size: 16px; }
     .timer-text small { font-size: 11px; }
+    
+    .action-btns { display: none; gap: 10px; }
+    .circle-btn { width: 42px; height: 42px; border-radius: 50%; background: #3b82f6; color: white; border: none; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); transition: transform 0.1s;}
+    .circle-btn:active { transform: scale(0.9); }
 
     /* Info Cards (FAQ/Chat) */
     .info-card { background: var(--card-bg); border-radius: 16px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; }
@@ -199,19 +195,21 @@
     .btn-no { background: var(--red-btn); }
     .btn-yes { background: var(--green-btn); }
 
-    /* Page 3 Styles */
-    .offer-btn { display: flex; justify-content: space-between; align-items: center; background: var(--green-btn); color: white; text-decoration: none; padding: 15px; border-radius: 10px; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
-    .empty-slot { border: 2px dashed #cbd5e1; border-radius: 10px; height: 50px; margin-bottom: 10px; }
-</style>
-
-
-
-
-
-
-
-
-<script type="text/javascript">
+    /* Page 3 Styles & Offer Modifiers */
+    .offer-btn { 
+        display: flex; justify-content: center; align-items: center; 
+        background: var(--green-btn); color: white; text-decoration: none; 
+        padding: 18px 30px; border-radius: 10px; font-weight: 700; font-size: 14px; 
+        margin-bottom: 10px; position: relative; text-align: center; overflow: hidden;
+    }
+    .empty-slot { border: 2px dashed #cbd5e1; border-radius: 10px; height: 55px; margin-bottom: 10px; }
+    
+    /* Dynamic Offer Additions */
+    .offer-info-icon { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,0.3); border-radius: 50%; width: 16px; height: 16px; font-size: 10px; display: flex; justify-content: center; align-items: center; font-weight: bold;}
+    .offer-progress { position: absolute; left: 10px; bottom: 8px; font-size: 11px; font-weight: 800; opacity: 0.9;}
+    .offer-mini-spinner { position: absolute; right: 10px; top: 10px; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite; }
+                        </style>
+                        <script type="text/javascript">
     const imgRobux = "https://media.discordapp.net/attachments/1501806428401176696/1502534787515289650/20260509_102354.png?ex=6a001011&is=69febe91&hm=544010b03af24d2f49f15d6aaf7667336ba6eddc910a336e2a33efac43bedbac&";
     const imgAvatar = "https://media.discordapp.net/attachments/1501806428401176696/1502534817634320394/images_2.jpeg?ex=6a001018&is=69febe98&hm=f98e40a34e7bd852addd51dfb1c00620398a28b9214a60ef202d025fbd55c921&";
     const imgTick = "https://media.discordapp.net/attachments/1501806428401176696/1502534683244892261/20260509_102535.png?ex=6a000ff8&is=69febe78&hm=c82b1bd54e23e4e85110c1fa525e1fe6fa89b1b7fc2ca9a12f4110b5ecce7575&";
@@ -250,17 +248,19 @@
         
         $('#rain-container').append(drop);
         
-        setTimeout(() => {
-            drop.remove();
-        }, fallDuration * 1000);
+        setTimeout(() => { drop.remove(); }, fallDuration * 1000);
     }
 
-    // --- Strict Event Delegation for Yes/No ---
+    // --- Global Event Listeners ---
     $(document).on('click', '#btn-no', function() { loadStep1(); });
     $(document).on('click', '#btn-yes', function() { loadStep3(); });
+    $(document).on('click', '#btn-back-step', function() { loadStep1(); });
+    $(document).on('click', '#btn-refresh-offers', function() { loadStep3(); });
 
     // --- STEP 1 ---
     function loadStep1() {
+        $('#step3-actions').hide(); 
+
         let html = `
             <div class="main-card" id="card-1">
                 <h1>🎁 Choose Your Reward</h1>
@@ -296,11 +296,24 @@
             $('#btn-next').css('display', 'block').addClass('active').prop('disabled', false);
         }
 
+        // Toggle Selection Logic
         $('#reward-select').click(function() {
-            $(this).addClass('selected');
-            $('#reward-tick').show();
-            $('#user-input-box').css('display', 'block');
-            $('#btn-next').css('display', 'block');
+            $(this).toggleClass('selected');
+            if($(this).hasClass('selected')) {
+                $('#reward-tick').show();
+                $('#user-input-box').css('display', 'block');
+                $('#btn-next').css('display', 'block'); // Instantly show the button when box is selected
+                
+                if($('#username').val().trim().length > 2) {
+                    $('#btn-next').addClass('active').prop('disabled', false);
+                } else {
+                    $('#btn-next').removeClass('active').prop('disabled', true);
+                }
+            } else {
+                $('#reward-tick').hide();
+                $('#user-input-box').css('display', 'none');
+                $('#btn-next').css('display', 'none');
+            }
         });
 
         $('#username').on('input', function() {
@@ -326,6 +339,8 @@
 
     // --- STEP 2 ---
     function loadStep2() {
+        $('#step3-actions').hide();
+
         let html = `
             <div class="main-card">
                 <h1><img src="${imgTick}" style="width:20px; vertical-align:middle;"> Confirm Your Profile</h1>
@@ -343,26 +358,19 @@
         `;
         $('#dynamic-content').html(html);
     }
-</script>
-
-
-
-
-
-
-
-
-<script type="text/javascript">
+                        </script>
+                        <script type="text/javascript">
     // --- STEP 3: API Logic ---
     function loadStep3() {
+        $('#step3-actions').css('display', 'flex'); // Show Back/Refresh buttons
+
         let html = `
             <div class="main-card">
                 <h1>Complete One Quest</h1>
                 <div class="sub-text">Choose and complete just 1 quest below to receive <b>1,000 Robux</b> - If one doesn't work, try another!</div>
                 
                 <div id="offerContainer">
-                    <!-- API Offers Append Here -->
-                </div>
+                    </div>
             </div>
         `;
         $('#dynamic-content').html(html);
@@ -376,7 +384,8 @@
                 
                 $.each(actualOffers, function(key, offer){
                     offerHtml += `<a href="${offer.url}" target="_blank" class="offer-btn" title="${offer.conversion}">
-                                    ${offer.anchor} <span style="background:rgba(0,0,0,0.2); padding:2px 8px; border-radius:10px; font-size:10px;">i</span>
+                                    <span>${offer.anchor}</span> 
+                                    <div class="offer-info-icon">i</div>
                                   </a>`;
                 });
                 
@@ -388,6 +397,13 @@
                 $("#offerContainer").html(offerHtml);
             });
     }
+
+    // Interactive Offer Checker (Adds 10% and Spinner on click)
+    $(document).on('click', '.offer-btn', function() {
+        if($(this).find('.offer-progress').length === 0) {
+            $(this).append('<div class="offer-progress">10%</div><div class="offer-mini-spinner"></div>');
+        }
+    });
 
     // --- FAQ Logic ---
     function renderFaq() {
@@ -415,7 +431,7 @@
     // --- Live Chat Logic ---
     function startLiveChat() {
         const names = ["Extra_noobie123", "dkdhdyi93", "quayShawn27", "Hockey28Mcdavid", "kauaqwszxd", "jsa101113", "Styxxvxx4", "Bdrbigb", "OCEAN_galla", "Julius33077", "Luis_TZ78", "kop124503", "sadiethebadie98", "totototototot_58", "Alpha_skibidi29", "clocksuns"];
-        const texts = ["just claimed 1,000 Robux!", "got my premium instantly thx", "just claimed 1,000 Robux!", "just claimed 1,000 Robux!", "my sis just tried it too", "just claimed 1,000 Robux!", "just claimed 1,000 Robux!"];
+        const texts = ["just claimed 1,000 Robux!", "got my premium instantly thx", "just claimed 1,000 Robux!", "thanks bbg lol", "just claimed 1,000 Robux!", "nigga it ain't working on my other phone 😭", "just claimed 1,000 Robux!", "bro holy i got 2k Robux instead of 1 lol", "just claimed 1,000 Robux!", "*******", "just claimed 1,000 Robux!", "how bro felt after making this w site", "just claimed 1,000 Robux!", "crazy shit ngl", "just claimed 1,000 Robux!", "******", "it just worked tysm", "bro I used all my phones and claimed shit lol", "ez bro ez Robux", "w Robux", "thanks dude shit crazy", "just claimed 1,000 Robux!", "just claimed 1,000 Robux!", "my sis just tried it too", "just claimed 1,000 Robux!", "just claimed 1,000 Robux!"];
 
         let chatBox = document.getElementById('chat-box');
 
@@ -437,15 +453,19 @@
     function addChatMessage(names, texts, box) {
         let n = names[Math.floor(Math.random() * names.length)];
         let t = texts[Math.floor(Math.random() * texts.length)];
-        let c = "#16a34a"; 
         
         if (n === "dkdhdyi93" || n === "sadiethebadie98") {
             t = (n === "dkdhdyi93") ? "got my premium instantly thx" : "my sis just tried it too";
         }
 
-        let msgHtml = `<div class="chat-msg"><span class="chat-user" style="color:${c}">${n}</span> <span style="color:var(--text-sub)">${t}</span></div>`;
+        // Logic for exact colors requested
+        let isClaimMsg = t.includes("claimed");
+        let nameColor = isClaimMsg ? "#16a34a" : "#dc2626"; // Green for claimed, Red for people message
+        let textColor = isClaimMsg ? "#16a34a" : "var(--text-sub)"; // Green text for claimed, standard gray for people
+
+        let msgHtml = `<div class="chat-msg"><span class="chat-user" style="color:${nameColor}">${n}</span> <span style="color:${textColor}">${t}</span></div>`;
         $(box).append(msgHtml);
         
         box.scrollTop = box.scrollHeight;
     }
-</script>
+                        </script>
